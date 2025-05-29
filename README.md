@@ -212,7 +212,33 @@ cd MimicPlay/mimicplay
 python scripts/train.py --config configs/highlevel_human.json --dataset 'PATH_TO_HDF5_FILE'
 ```
 -------
-## Acknowledgement
+
+# Hardware script files
+
+## check_web_cams.py
+this is a script file that checks if the cameras as working properly. we can adjust the cameras accordingly.
+
+
+## human_demo_collect.py
+this file is used to collect the human demo , it stores video from left,right,wrist cameras in mp4 files. \\
+later we can use the demo_mp4.py in mimicplay/scripts/human_playdata_process/hand_object_detector for using the faster rcnn model to detect the hand.
+
+## robot_demo_collect.py
+this file is used to collect the robot demo , it stores video from left,right,wrist cameras in mp4 files. eef position and orientation in .npy files and actions taken by the phone in .npy file. \\
+for teleoperation details check [teleop_fr3_ros2](https://github.com/jvdutt/teleop_fr3_ros2)
+
+## 3d24d.py
+this file is used for the camera calibration, gets the linear mapping from 3d(in cartesian space) position of the end effector to the 4d(2 pixel coordinates of left image, 2 pixel coordinates of right image) position of the end effector.
+
+## Training
+training is done as given in the training section above
+
+## final_control.py
+this loads both high-level latent planner and low-level controller and uses the teleops abstraction for controlling the robot.
+
+
+
+# Acknowledgement
 - Our environment is based on [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO), [robosuite](https://github.com/ARISE-Initiative/robosuite), and [BEHAVIOR BDDL language](https://github.com/StanfordVL/bddl).
 - Our training and evaluation scripts are based on [robomimic](https://github.com/ARISE-Initiative/robomimic).
 - Our human hand detection is based on [hand_object_detector](https://github.com/ddshan/hand_object_detector).
